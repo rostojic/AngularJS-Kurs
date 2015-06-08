@@ -1,0 +1,17 @@
+<p>
+    <a href="#/">Back to Search</a>
+</p>
+
+Search for {{ movie }} - total counts {{movieResult.total_results}}
+<hr />
+<ul class="list-group">
+    <li  class="list-group-item" ng-repeat="m in movieResult.results" >
+        <div class="panel-heading">
+                    <h3 class="panel-title">{{m.original_title}}</h3>
+        </div>
+        <em class="pull-right">Release date: {{ m.release_date | date:'longDate' }} </em>
+      
+            <img ng-src="{{imagePath + m.poster_path}}"> 
+      
+    </li>
+</ul>
