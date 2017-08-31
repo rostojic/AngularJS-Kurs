@@ -5,25 +5,20 @@ var moviePosterApp = angular.module('moviePosterApp', ['ngRoute', 'ngResource'])
 moviePosterApp.config(function ($routeProvider) {
    
     $routeProvider
-    
     .when('/', {
         templateUrl: 'pages/home.htm',
         controller: 'homeController'
     })
-    
     .when('/search', {
         templateUrl: 'pages/moviePanel.htm',
         controller: 'movieController'
     })
-    
-    
 });
 
 // SERVICES
 moviePosterApp.service('movieService', function() {
    
     this.movie = "Ko to tamo peva";
-    
 });
 
 // CONTROLLERS
@@ -33,7 +28,6 @@ moviePosterApp.controller('homeController', ['$scope', 'movieService', function(
     $scope.$watch('movie', function() {
        movieService.movie = $scope.movie; 
     });
-    
 }]);
 
 moviePosterApp.controller('movieController', ['$scope', '$resource', 'movieService', function($scope, $resource,  movieService) {
@@ -42,8 +36,5 @@ moviePosterApp.controller('movieController', ['$scope', '$resource', 'movieServi
     $scope.api_key = 'f2c99cf74ee4c4214605f5ac1bc00fc6';
     $scope.imagePath = 'http://image.tmdb.org/t/p/w150';
     $scope.movieAPI = $resource("https://api.themoviedb.org/3/search/movie", { callback: "JSON_CALLBACK" }, { get: { method: "JSONP" }});
-    
     $scope.movieResult = $scope.movieAPI.get({ query: $scope.movie, api_key: $scope.api_key });
-    
-    
 }]);
